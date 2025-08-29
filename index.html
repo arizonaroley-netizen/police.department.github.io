@@ -1,587 +1,510 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PPD — Полицейский департамент Пайнвиля (2004)</title>
+  <title>Департамент Полиции Пайнвиль — RP Кодекс и Регламенты</title>
+  <meta name="description" content="Полный устав, радиокоды, протоколы и бюрократические процедуры для RP-департамента полиции города Пайнвиль (штат Оклахома)." />
   <style>
     :root{
-      --bg:#0f1220;--panel:#151936;--muted:#9aa3b2;--text:#eaf0ff;--accent:#7aa2ff;--accent-2:#a3ffbf;--danger:#ff7a7a;--warn:#ffd27a;
-      --border:rgba(255,255,255,.08);
+      --bg:#0b1020; --panel:#121831; --ink:#e9edfc; --muted:#a8b2d1; --accent:#86b7ff; --ok:#59d49b; --warn:#ffd166; --bad:#ff6b6b; --line:rgba(255,255,255,.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-    *{box-sizing:border-box}
+    .light{ --bg:#f6f7fb; --panel:#ffffff; --ink:#0d142b; --muted:#4d5a7b; --accent:#0b6bff; --ok:#0fa37f; --warn:#b8860b; --bad:#b30033; --line:rgba(13,20,43,.08); --shadow:0 10px 24px rgba(13,20,43,.08); }
     html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#0c0f1c,#141a33 40%,#0f1220);color:var(--text);font:500 16px/1.55 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;}
-    a{color:var(--accent);text-decoration:none}
-    .app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
-    .sidebar{position:sticky;top:0;height:100vh;overflow:auto;background:rgba(255,255,255,.02);border-right:1px solid var(--border);backdrop-filter: blur(8px)}
-    .logo{display:flex;gap:12px;align-items:center;padding:20px;border-bottom:1px solid var(--border)}
-    .logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6bf);display:grid;place-items:center;color:#0b1024;font-weight:900}
-    .nav{padding:14px}
-    .nav a{display:block;padding:10px 12px;border-radius:10px;color:var(--text);opacity:.85;border:1px solid transparent}
-    .nav a:hover{background:rgba(255,255,255,.04);opacity:1;border-color:var(--border)}
-    .nav .group{margin:8px 0 14px}
-    .nav .title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:16px 12px 6px}
-    .main{padding:28px 28px 120px}
-    .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
-    .search{flex:1;min-width:240px;display:flex;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:8px 12px}
-    .search input{background:transparent;border:0;outline:0;color:var(--text);width:100%;font-size:14px}
-    .btn{appearance:none;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text);padding:10px 14px;border-radius:12px;cursor:pointer}
-    .btn:hover{background:rgba(255,255,255,.07)}
-    .grid{display:grid;gap:18px}
-    @media(min-width:980px){.grid{grid-template-columns:repeat(12,1fr)}}
-    .card{grid-column: span 12;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:16px;overflow:hidden}
-    .card.half{grid-column: span 12}
-    @media(min-width:980px){.card.half{grid-column: span 6}}
-    .card .hd{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border)}
-    .card .hd h2{margin:0;font-size:18px}
-    .card .bd{padding:16px 18px}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    .layout{display:grid;grid-template-columns:300px 1fr;gap:22px;max-width:1400px;margin:0 auto;padding:22px}
+    header.top{grid-column:1/-1;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0));border:1px solid var(--line);border-radius:18px;padding:18px 22px;box-shadow:var(--shadow);position:sticky;top:12px;z-index:5}
+    header .title{display:flex;align-items:center;gap:14px}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btn{background:var(--panel);border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--ink);cursor:pointer;box-shadow:var(--shadow)}
+    .btn:hover{transform:translateY(-1px)}
+    .sidebar{position:sticky;top:96px;align-self:start;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 14px;box-shadow:var(--shadow);max-height:calc(100vh - 120px);overflow:auto}
+    .sidebar input{width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink)}
+    .toc{list-style:none;padding:8px 0;margin:10px 0 0 0}
+    .toc a{display:block;padding:8px 10px;border-radius:10px;color:var(--muted);text-decoration:none}
+    .toc a:hover{background:rgba(255,255,255,.06);color:var(--ink)}
+    main{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 18px 40px 18px;box-shadow:var(--shadow)}
+    section{border-top:1px dashed var(--line);padding-top:18px;margin-top:18px}
+    h1,h2,h3{line-height:1.25;margin:0 0 .5em 0}
+    h1{font-size:28px}
+    h2{font-size:22px;margin-top:6px}
+    h3{font-size:18px;margin-top:8px;color:var(--muted)}
+    p{margin:.25em 0 .75em}
     .muted{color:var(--muted)}
-    .kbd{display:inline-grid;place-items:center;min-width:22px;padding:2px 8px;border:1px solid var(--border);border-bottom-width:2px;border-radius:8px;background:#0a0e20;color:var(--accent)}
-    .tag{display:inline-block;padding:4px 8px;border:1px solid var(--border);border-radius:999px;margin:2px 6px 2px 0;color:var(--muted);font-size:12px}
-    .list{margin:0;padding-left:18px}
-    .table{width:100%;border-collapse:separate;border-spacing:0}
-    .table th,.table td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left}
-    .table th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
-    .kbdline{display:inline-flex;gap:8px;align-items:center}
-    .code{background:#0b1024;border:1px solid var(--border);border-radius:12px;padding:12px;overflow:auto}
-    .cols{columns:2;column-gap:20px}
-    @media(max-width:900px){.cols{columns:1}}
-    .pill{padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.03);font-size:12px;color:var(--muted)}
-    .alert{padding:10px 12px;border-left:4px solid var(--warn);background:rgba(255,255,255,.04);border-radius:8px}
-    .danger{border-left-color:var(--danger)}
-    .ok{border-left-color:var(--accent-2)}
-    .copy{float:right;font-size:12px}
-    .bbcode{white-space:pre;overflow:auto}
-    .foot{margin-top:40px;font-size:12px;color:var(--muted);text-align:center}
+    .grid{display:grid;gap:12px}
+    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none;}.grid.cols-2,.grid.cols-3{grid-template-columns:1fr}}
+    table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    th,td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+    th{background:rgba(255,255,255,.04);text-align:left}
+    tr:hover td{background:rgba(255,255,255,.03)}
+    details{border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:700}
+    .tag{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:12px}
+    .callout{border-left:4px solid var(--accent);padding:10px 12px;background:rgba(134,183,255,.08);border-radius:8px}
+    .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+    code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px}
+    code{padding:2px 6px}
+    pre{padding:12px;overflow:auto}
+    .footer{margin-top:28px;color:var(--muted);font-size:14px}
+    .hidden{display:none !important}
+    .kpi{display:flex;gap:12px;flex-wrap:wrap}
+    .kpi div{flex:1;min-width:160px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:10px}
   </style>
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="logo">
-        <div class="mark">PPD</div>
+  <div class="layout" id="app">
+    <header class="top">
+      <div class="title">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H5v-4l-3-3 3-3V5h4l3-3z" stroke="currentColor" stroke-width="1.2"/></svg>
         <div>
-          <div style="font-weight:800;letter-spacing:.02em">Pineville PD</div>
-          <div class="muted" style="font-size:12px">Оклахома · 2004</div>
+          <h1>Департамент Полиции города Пайнвиль (Оклахома)</h1>
+          <h3>RP Кодекс, радиокоды, протоколы и бюрократия — единый источник для игроков</h3>
         </div>
+        <span class="badge" title="RP Guide">RP Guide</span>
       </div>
-      <nav class="nav" id="nav"></nav>
+      <div class="controls">
+        <button class="btn" id="toggleTheme" aria-pressed="false">🌗 Тема</button>
+        <button class="btn" onclick="window.print()">🖨️ Печать / PDF</button>
+        <button class="btn" id="expandAll">➕ Развернуть всё</button>
+        <button class="btn" id="collapseAll">➖ Свернуть всё</button>
+      </div>
+     
+    </header>
+
+    <aside class="sidebar">
+      <input type="search" id="search" placeholder="Поиск по разделам..." aria-label="Поиск" />
+      <ul class="toc" id="toc">
+        <!-- TOC генерируется скриптом -->
+      </ul>
     </aside>
-    <main class="main">
-      <div class="toolbar">
-        <div class="search"><input id="q" placeholder="Поиск по документу (например, ‘10‑70’, ‘Liberty Street’)"></div>
-        <button class="btn" onclick="window.print()">Печать / PDF</button>
-        <button class="btn" id="expand">Раскрыть все спойлеры</button>
-      </div>
 
-      <div class="grid" id="content">
-        
-        <!-- 1. Общая информация -->
-        <section class="card" data-title="1. Общая информация" id="about">
-          <div class="hd"><h2>1. Общая информация</h2><span class="pill">Раздел форума: Основные положения</span></div>
-          <div class="bd">
-            <p><b>Pineville Police Department (PPD)</b> — правоохранительный орган города Пайнвиль, обеспечивающий защиту жизни, прав и собственности граждан. Пайнвиль, штат Оклахома.</p>
-            <div class="cols">
-              <div>
-                <p><b>История:</b> основан в 1933 г. с задачей охраны почтовых грузов и контроля дорожной обстановки. К 2004 г. — противодействие ОПГ <b>DeSpiff</b>, рост коррупции и криминала.</p>
-                <p><b>Миссия:</b> служить обществу, снижать преступность, пресекать оборот наркотиков и нелегального оружия, контролировать ключевые магистрали.</p>
-              </div>
-              <div>
-                <p><b>Девиз:</b> <i>“To Serve and Protect”</i></p>
-                <p><b>Ключевые угрозы:</b> организованная преступность (<b>DeSpiff</b>), наркотрафик, контрабанда оружия, коррупция, уличные банды (район <i>Green Street</i>).</p>
-                <p class="muted">Логика → Далее: где мы работаем? См. «2. Территория ответственности».</p>
-              </div>
-            </div>
-          </div>
-        </section>
+    <main id="content">
 
-       
-        <!-- 2. Радиокоды -->
-        <section class="card" data-title="3. Радиокоды (Ten‑Codes)" id="ten">
-          <div class="hd"><h2>3. Радиокоды (Ten‑Codes)</h2><span class="pill">Форум: Радиокоды</span></div>
-          <div class="bd">
-            <div class="grid">
-              <div class="card half">
-                <div class="hd"><h2>Базовые</h2></div>
-                <div class="bd">
-                  <ul class="list">
-                    <li><span class="kbd">10‑1</span> — плохая связь</li>
-                    <li><span class="kbd">10‑4</span> — принято</li>
-                    <li><span class="kbd">10‑6</span> — занят</li>
-                    <li><span class="kbd">10‑7</span> — вне службы</li>
-                    <li><span class="kbd">10‑8</span> — в патруле</li>
-                    <li><span class="kbd">10‑9</span> — повторите</li>
-                    <li><span class="kbd">10‑20</span> — местоположение</li>
-                    <li><span class="kbd">10‑23</span> — прибыл</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card half">
-                <div class="hd"><h2>Инциденты</h2></div>
-                <div class="bd">
-                  <ul class="list">
-                    <li><span class="kbd">10‑10</span> — драка</li>
-                    <li><span class="kbd">10‑15</span> — задержанный</li>
-                    <li><span class="kbd">10‑25</span> — вооружённое нападение</li>
-                    <li><span class="kbd">10‑31</span> — ограбление</li>
-                    <li><span class="kbd">10‑32</span> — подкрепление</li>
-                    <li><span class="kbd">10‑50</span> — ДТП</li>
-                    <li><span class="kbd">10‑70</span> — погоня</li>
-                    <li><span class="kbd">10‑80</span> — вооружённое сопротивление</li>
-                    <li><span class="kbd">10‑99</span> — офицер в опасности</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="code" style="margin-top:10px">
-[Примеры радио]
-— «10‑20, Liberty Street/2. Нужен 10‑32.»
-— «10‑70, синий седан, 79 Highway, направление юг.»
-            </div>
-            <p class="muted">Логика → Радиосвязь применяется в патрулях. См. «4. Патрулирование».</p>
-          </div>
-        </section>
+      <section id="intro">
+        <h2>1. Введение и принципы</h2>
+        <p>Этот документ — детальный устав и набор процедур для RP-отыгрыша в <em>Департаменте Полиции Пайнвиля</em> (далее — ДПП). Он создан, чтобы игроки понимали ожидания, стиль взаимодействия и единые стандарты поведения.</p>
+        <ul>
+          <li><strong>Фокус на RP:</strong> реализм + фановость. Избегаем метагейминга, павергейминга, токсичности.</li>
+          <li><strong>Законность и необходимость:</strong> каждое действие должно иметь основание и быть соразмерным.</li>
+          <li><strong>Деэскалация:</strong> приоритет слов над силой; при возможности — переговоры.</li>
+          <li><strong>Честность отчётности:</strong> пишем отчёты, ведём логи, помогаем друг другу.</li>
+        </ul>
+      </section>
 
-        <!-- 4. Патрули -->
-        <section class="card" data-title="4. Патрулирование и взаимодействие" id="patrols">
-          <div class="hd"><h2>4. Патрулирование и взаимодействие</h2><span class="pill">Форум: RP‑документы</span></div>
-          <div class="bd">
-            <div class="cols">
-              <div>
-                <p><b>Формы патруля:</b></p>
-                <ul class="list">
-                  <li>Пеший — Main Street, Main Avenue</li>
-                  <li>Автопатруль — Residential, Middle, Quiet</li>
-                  <li>Highway Patrol — 79 Highway, фуры и курьеры</li>
-                  <li>Совместный — с FBI/DEA по нарко‑операциям</li>
-                  <li>Под прикрытием — против <b>DeSpiff</b></li>
-                </ul>
-              </div>
-              <div>
-                <p><b>Регламент смены:</b></p>
-                <ul class="list">
-                  <li>Каждые 30 минут: доклад 10‑20 диспетчеру</li>
-                  <li>Проверка точек риска: Liberty 1–3, Quiet Street (ночью)</li>
-                  <li>Остановка ТС при основаниях, оформление тикета</li>
-                  <li>Эвакуация граждан при Code Red</li>
-                </ul>
-              </div>
-            </div>
-            <div class="alert ok">Логика → Патруль ведёт к инцидентам. Нужны правила применения силы. См. «5. Применение силы».</div>
-          </div>
-        </section>
+      <section id="terms">
+        <h2>2. Термины и сокращения</h2>
+        <p><span class="tag">OOC</span> — общение вне роли. <span class="tag">IC</span> — в роли. <span class="tag">BOLO</span> — ориентировка («разыскать»). <span class="tag">NCZ</span> — зона без конфликтов. <span class="tag">RoE</span> — правила применения силы.</p>
+      </section>
 
-        <!-- 5. Применение силы -->
-        <section class="card" data-title="5. Применение силы (Use of Force)" id="uof">
-          <div class="hd"><h2>5. Применение силы (Use of Force)</h2><span class="pill">Форум: Устав и регламент</span></div>
-          <div class="bd">
-            <ol class="list">
-              <li><b>Вербальное предупреждение</b> — чёткие команды, предупреждение о последствиях</li>
-              <li><b>Физическое удержание</b> — захваты/контроль</li>
-              <li><b>Спецсредства</b> — дубинка, газ, тазер</li>
-              <li><b>Нелетальное</b> — резиновые пули, трейнинг‑мод</li>
-              <li><b>Огнестрельное</b> — только при явной угрозе жизни</li>
-            </ol>
-            <div class="alert danger"><b>Важно:</b> любое применение силы → обязательный рапорт.</div>
-            <p class="muted">Логика → После силового контакта часто следует задержание. См. «6. Задержание».</p>
-          </div>
-        </section>
-
-        <!-- 6. Задержание -->
-        <section class="card" data-title="6. Задержание: алгоритм и права" id="arrest">
-          <div class="hd"><h2>6. Задержание: алгоритм и права</h2><span class="pill">Форум: RP‑документы</span></div>
-          <div class="bd">
-            <ol class="list">
-              <li>Представиться, указать подразделение</li>
-              <li>Сообщить причину задержания</li>
-              <li>Зачитать <b>Miranda Rights</b></li>
-              <li>Надеть наручники, провести досмотр</li>
-              <li>Доставка в департамент</li>
-              <li>Оформление документов (тикет, протокол, рапорт)</li>
-            </ol>
-            <div class="code">Miranda: «Вы имеете право хранить молчание. Всё, что вы скажете, может и будет использовано против вас в суде. Вы имеете право на адвоката…»</div>
-            <p class="muted">Логика → Требуются стандартизированные бланки. См. «7. Бюрократия и формы».</p>
-          </div>
-        </section>
-
-        <!-- 7. Формы и тикеты -->
-        <section class="card" data-title="7. Бюрократия: тикеты и формы" id="forms">
-          <div class="hd"><h2>7. Бюрократия: тикеты и формы</h2><span class="pill">Форум: RP‑документы → Бюрократия</span></div>
-          <div class="bd">
-            <p>Шаблоны для копирования на форум. Кнопки «Скопировать» и «Скачать .txt» работают локально.</p>
-            
-            <details open>
-              <summary><b>7.1 Тикет на задержание</b></summary>
-              <button class="btn copy" data-copy="t1">Скопировать</button>
-              <button class="btn" data-dl="t1" data-name="ticket_arrest.txt">Скачать .txt</button>
-              <pre id="t1" class="code bbcode">[Задержание №0001]
-Дата/время: __.__.2004, __:__
-Место: ________________________
-Юнит(ы): ______________________
-Офицер(ы): ____________________
-Подозреваемый(е): _____________
-Статья/обвинение: _____________
-
-Описательная часть:
-— Предпосылки: ____________________________
-— Основание для задержания: ______________
-— Применение силы: да/нет (что именно): ___
-— Изъято: ________________________________
-
-Права разъяснены (Miranda): да/нет
-Состояние задержанного: нормально/нужна EMS
-
-Подпись офицера: ____________  Подпись задержанного: ____________</pre>
-            </details>
-
-            <details>
-              <summary><b>7.2 Протокол допроса</b></summary>
-              <button class="btn copy" data-copy="t2">Скопировать</button>
-              <button class="btn" data-dl="t2" data-name="interrogation_report.txt">Скачать .txt</button>
-              <pre id="t2" class="code bbcode">[Протокол допроса]
-Дата: __.__.2004  Время: __:__–__:__
-Место: кабинет допросов №__  Аудиозапись: да/нет
-Офицер(ы): _________________________
-Подозреваемый: _____________________  Адвокат: да/нет
-
-Права разъяснены (Miranda): да/нет
-
-Ход допроса:
-Q1: __________________________________
-A1: __________________________________
-Q2: __________________________________
-A2: __________________________________
-...
-
-Итоги/признания: _____________________
-Решение: передать дело в прокуратуру / освободить под залог / иное
-Подписи: офицер ________  подозреваемый ________  адвокат ________</pre>
-            </details>
-
-            <details>
-              <summary><b>7.3 Отчёт об аресте (рапорт)</b></summary>
-              <button class="btn copy" data-copy="t3">Скопировать</button>
-              <button class="btn" data-dl="t3" data-name="arrest_report.txt">Скачать .txt</button>
-              <pre id="t3" class="code bbcode">[Отчёт об аресте]
-Дата: __.__.2004  Смена: ______
-Офицер-составитель: __________  Позывной: __-__
-Арестованный: ________________  Дата рождения: __.__.____
-
-Статьи: ______________________
-Место/время задержания: ______
-Описание обстоятельств:
-— Обнаружение: _________________________
-— Преследование/погоня: ________________
-— Применение силы/оружия: _____________
-— Изъятые улики: _______________________
-Свидетели: _____________________________
-
-Приложения: фото/видео, карты, рапорты напарников
-Рекомендация: прокуратура / залог / изъятие лицензий / прочее
-Подпись офицера: __________</pre>
-            </details>
-
-            <details>
-              <summary><b>7.4 Ежедневный отчёт офицера (EOR)</b></summary>
-              <button class="btn copy" data-copy="t4">Скопировать</button>
-              <button class="btn" data-dl="t4" data-name="daily_log.txt">Скачать .txt</button>
-              <pre id="t4" class="code bbcode">[Ежедневный отчёт]
-Дата: __.__.2004  Офицер: __________  Смена: 08:00–20:00
-
-__ : __ — Патруль Residential Street, вызов 10‑10, урегулировано
-__ : __ — Остановка ТС на 79 Highway, проверка документов, предупреждение
-__ : __ — 10‑70, погоня, задержан 1 чел., изъято нож
-__ : __ — Оформление тикетов, конец смены
-
-Итог: задержаний — __, протоколов — __, выдача — __</pre>
-            </details>
-
-            <details>
-              <summary><b>7.5 Бланк изъятия вещественных доказательств</b></summary>
-              <button class="btn copy" data-copy="t5">Скопировать</button>
-              <button class="btn" data-dl="t5" data-name="evidence_form.txt">Скачать .txt</button>
-              <pre id="t5" class="code bbcode">[Изъятие улик]
-Номер дела: ______  Офицер: ______  Дата: __.__.2004
-
-Перечень улик:
-1) ____________________________  место изъятия ______
-2) ____________________________  место изъятия ______
-Условия хранения: _____________
-Цепочка передачи: офицер → хранитель → лаборатория → офицер дела
-Подписи: __________ / __________ / __________</pre>
-            </details>
-
-            <p class="muted">Логика → Заполнение бумаг регулируется уставом. См. «8. Устав и дисциплина».</p>
-          </div>
-        </section>
-
-        <!-- 8. Устав и дисциплина -->
-        <section class="card" data-title="8. Устав и дисциплина" id="charter">
-          <div class="hd"><h2>8. Устав и дисциплина</h2><span class="pill">Форум: Устав и регламент</span></div>
-          <div class="bd">
-            <ul class="list">
-              <li>Соблюдать законы США и штата Оклахома</li>
-              <li>Запрет на коррупцию и связи с ОПГ (<b>DeSpiff</b>)</li>
-              <li>Субординация: младшие подчиняются старшим</li>
-              <li>Не оставлять напарника, доклады каждые 30 минут</li>
-              <li>Каждое применение силы — рапорт и проверка IA</li>
-            </ul>
-            <p><b>Дисциплинарная лестница:</b> устный → письменный выговор → штраф → понижение → увольнение.</p>
-            <p class="muted">Логика → Для исполнения устава нужна понятная иерархия. См. «9. Иерархия».</p>
-          </div>
-        </section>
-
-        <!-- 9. Иерархия -->
-        <section class="card" data-title="9. Иерархия" id="rank">
-          <div class="hd"><h2>9. Иерархия</h2><span class="pill">Форум: Основные положения</span></div>
-          <div class="bd">
-            <table class="table">
-              <thead><tr><th>Звание</th><th>Ключевые обязанности</th></tr></thead>
+      <section id="ranks">
+        <h2>3. Иерархия и структура</h2>
+        <div class="grid cols-2">
+          <div>
+            <h3>Ранги</h3>
+            <table>
+              <thead><tr><th>Ранг</th><th>Ключевые обязанности</th></tr></thead>
               <tbody>
-                <tr><td>Chief of Police</td><td>Общая стратегия, связи с мэрией и федералами</td></tr>
-                <tr><td>Deputy Chief</td><td>Координация подразделений, дисциплина</td></tr>
-                <tr><td>Captain</td><td>Руководство отделами, приказы по операциям</td></tr>
-                <tr><td>Lieutenant</td><td>Смены, наставничество сержантов</td></tr>
-                <tr><td>Sergeant</td><td>Полевая тактика, обучение кадетов</td></tr>
-                <tr><td>Detective</td><td>Расследования, дела, допросы</td></tr>
-                <tr><td>Patrol Officer</td><td>Патрули, задержания, отчётность</td></tr>
-                <tr><td>Cadet</td><td>Стажировка, сопровождение сержанта</td></tr>
+                <tr><td>Chief of Police</td><td>Стратегия, приказы, дисциплина, внешние связи.</td></tr>
+                <tr><td>Deputy Chief</td><td>Управление операциями, контроль дивизионов.</td></tr>
+                <tr><td>Captain</td><td>Командование отделами (Патруль, Детективы, SWAT и т.п.).</td></tr>
+                <tr><td>Lieutenant</td><td>Смены, брифинги, отчёты, разборы.</td></tr>
+                <tr><td>Sergeant</td><td>Надзор за экипажами, полевая подготовка.</td></tr>
+                <tr><td>Corporal</td><td>Старший патрульный, наставник.</td></tr>
+                <tr><td>Detective</td><td>Расследования, допросы, ордера, доказательства.</td></tr>
+                <tr><td>Officer</td><td>Патруль, вызовы, задержания, отчёты.</td></tr>
+                <tr><td>Cadet</td><td>Стажировка с наставником; ограниченные полномочия.</td></tr>
               </tbody>
             </table>
-            <p class="muted">Логика → Для задач нужны узкие специализации. См. «10. Подразделения».</p>
           </div>
-        </section>
-
-        <!-- 10. Подразделения -->
-        <section class="card" data-title="10. Подразделения" id="units">
-          <div class="hd"><h2>10. Подразделения</h2><span class="pill">Форум: RP‑документы</span></div>
-          <div class="bd">
-            <ul class="list">
-              <li><b>Patrol Unit</b> — уличные патрули, первые на вызовах</li>
-              <li><b>Traffic / Highway Patrol</b> — 79 Highway, грузовики, DUI</li>
-              <li><b>Narcotics Unit</b> — наркопреступления, операции с DEA</li>
-              <li><b>Gang Unit</b> — банды, Liberty Street 1–3</li>
-              <li><b>Detective Bureau</b> — расследование дел, допросы</li>
-              <li><b>SWAT</b> — высокорискованные задержания, штурмы</li>
+          <div>
+            <h3>Подразделения</h3>
+            <ul>
+              <li>Patrol Division</li>
+              <li>Traffic Unit</li>
+              <li>Detective Bureau</li>
+              <li>SWAT (активация по регламенту)</li>
+              <li>K-9 Unit</li>
+              <li>CSI / Evidence</li>
+              <li>Internal Affairs (IA)</li>
+              <li>Communications / Dispatch</li>
             </ul>
-            <p class="muted">Логика → Межвед взаимодействие для больших дел. См. «11. Сотрудничество».</p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- 11. Сотрудничество -->
-        <section class="card" data-title="11. Сотрудничество" id="coop">
-          <div class="hd"><h2>11. Сотрудничество</h2><span class="pill">Форум: RP‑документы</span></div>
-          <div class="bd">
-            <ul class="list">
-              <li><b>FBI</b> — ОПГ и межштатные дела</li>
-              <li><b>DEA</b> — наркотрафик, лаборатории</li>
-              <li><b>Sheriff’s Office</b> — пригороды и трассы</li>
-              <li><b>Муниципалитет</b> — митинги, эвакуации, Code Red</li>
-            </ul>
-            <p class="muted">Логика → Единая система цвета тревог. См. «12. Уровни угрозы».</p>
-          </div>
-        </section>
+      <section id="tencodes">
+        <h2>4. Радиокоды (Ten-codes) и алфавит</h2>
+        <details open>
+          <summary>4.1 Основные 10-коды</summary>
+          <table>
+            <thead><tr><th>Код</th><th>Значение</th><th>Пример</th></tr></thead>
+            <tbody>
+              <tr><td>10-1</td><td>Связь неустойчива</td><td>Unit 21, 10-1, повторите.</td></tr>
+              <tr><td>10-4</td><td>Принято (Аффирм.)</td><td>10-4, направляюсь.</td></tr>
+              <tr><td>10-7</td><td>Не на связи</td><td>Unit 12, 10-7 на заправке.</td></tr>
+              <tr><td>10-8</td><td>На связи / свободен</td><td>Unit 12, 10-8.</td></tr>
+              <tr><td>10-9</td><td>Повторите</td><td>10-9 последнюю передачу.</td></tr>
+              <tr><td>10-10</td><td>Драка</td><td>10-10 у бара «Red Oak».</td></tr>
+              <tr><td>10-13</td><td>Нужна помощь офицеру</td><td>10-13! Офицер сдерживает подозреваемого.</td></tr>
+              <tr><td>10-20</td><td>Местоположение</td><td>Сообщите 10-20.</td></tr>
+              <tr><td>10-22</td><td>Отбой / отмена</td><td>10-22 предыдущий вызов.</td></tr>
+              <tr><td>10-23</td><td>На месте</td><td>Unit 5, 10-23 сцены.</td></tr>
+              <tr><td>10-26</td><td>Задерживаю субъекта</td><td>10-26, один в наручниках.</td></tr>
+              <tr><td>10-27</td><td>Проверка ВУ (DL)</td><td>10-27, Джон Доу, 01/01/1990.</td></tr>
+              <tr><td>10-29</td><td>Проверка розыска</td><td>10-29 по номеру ABC123.</td></tr>
+              <tr><td>10-31</td><td>Преступление в процессе</td><td>10-31, ограбление.</td></tr>
+              <tr><td>10-32</td><td>Вооружённый (огнестр.)</td><td>10-32, видят оружие.</td></tr>
+              <tr><td>10-33</td><td>Экстренная связь</td><td>10-33, канал только для экстренных.</td></tr>
+              <tr><td>10-36</td><td>Точное время</td><td>10-36, время?</td></tr>
+              <tr><td>10-50</td><td>ДТП</td><td>10-50 на шоссе 17.</td></tr>
+              <tr><td>10-51</td><td>Эвакуатор</td><td>10-51 на 10-20.</td></tr>
+              <tr><td>10-52</td><td>Скорая помощь</td><td>10-52 на место драки.</td></tr>
+              <tr><td>10-60</td><td>Нужен напарник/поддержка</td><td>10-60 для досмотра авто.</td></tr>
+              <tr><td>10-61</td><td>Ожидайте</td><td>10-61, оформляю.</td></tr>
+              <tr><td>10-65</td><td>Ордер/поручение</td><td>10-65 на обыск.</td></tr>
+              <tr><td>10-66</td><td>Подозрительная активность</td><td>10-66 у склада.</td></tr>
+              <tr><td>10-70</td><td>Пожар</td><td>10-70, требуется FD.</td></tr>
+              <tr><td>10-71</td><td>Характер пожара</td><td>10-71, уточните.</td></tr>
+              <tr><td>10-76</td><td>В пути</td><td>10-76 к 10-50.</td></tr>
+              <tr><td>10-97</td><td>Прибыл на вызов</td><td>10-97 к диспетчу.</td></tr>
+              <tr><td>10-98</td><td>Задача выполнена</td><td>10-98, возвращаюсь 10-8.</td></tr>
+              <tr><td>10-99</td><td>Разыскивается/украден</td><td>10-99 по VIN.</td></tr>
+            </tbody>
+          </table>
+        </details>
+        <details>
+          <summary>4.2 Фонетический алфавит (NATO)</summary>
+          <table>
+            <thead><tr><th>Буква</th><th>Код</th><th>Буква</th><th>Код</th></tr></thead>
+            <tbody>
+              <tr><td>A</td><td>Alpha</td><td>N</td><td>November</td></tr>
+              <tr><td>B</td><td>Bravo</td><td>O</td><td>Oscar</td></tr>
+              <tr><td>C</td><td>Charlie</td><td>P</td><td>Papa</td></tr>
+              <tr><td>D</td><td>Delta</td><td>Q</td><td>Quebec</td></tr>
+              <tr><td>E</td><td>Echo</td><td>R</td><td>Romeo</td></tr>
+              <tr><td>F</td><td>Foxtrot</td><td>S</td><td>Sierra</td></tr>
+              <tr><td>G</td><td>Golf</td><td>T</td><td>Tango</td></tr>
+              <tr><td>H</td><td>Hotel</td><td>U</td><td>Uniform</td></tr>
+              <tr><td>I</td><td>India</td><td>V</td><td>Victor</td></tr>
+              <tr><td>J</td><td>Juliett</td><td>W</td><td>Whiskey</td></tr>
+              <tr><td>K</td><td>Kilo</td><td>X</td><td>X-ray</td></tr>
+              <tr><td>L</td><td>Lima</td><td>Y</td><td>Yankee</td></tr>
+              <tr><td>M</td><td>Mike</td><td>Z</td><td>Zulu</td></tr>
+            </tbody>
+          </table>
+        </details>
+        <details>
+          <summary>4.3 Протоколы радиосвязи</summary>
+          <ul>
+            <li>Коротко, по делу. Позывной → местоположение → суть → запрос.</li>
+            <li>Канал «10-33» — только экстренные сообщения.</li>
+            <li>BOLO — содержать: описание, номер, направление, опасность.</li>
+          </ul>
+          <pre>Пример: "Unit 24 to Dispatch, 10-76 to 10-50, Route 17 westbound, need 10-52, one vehicle rollover."</pre>
+        </details>
+      </section>
 
-        <!-- 12. Уровни угрозы -->
-        <section class="card" data-title="12. Уровни угрозы (Codes)" id="threat">
-          <div class="hd"><h2>12. Уровни угрозы (Codes)</h2><span class="pill">Форум: Устав и регламент</span></div>
-          <div class="bd">
-            <ul class="list">
-              <li>🟢 <b>Code Green</b> — штатный режим</li>
-              <li>🟡 <b>Code Yellow</b> — повышенная активность банд</li>
-              <li>🔴 <b>Code Red</b> — массовые беспорядки/перестрелки</li>
-            </ul>
-            <p class="muted">Логика → Завершает систему ценностей присяга. См. «13. Присяга».</p>
-          </div>
-        </section>
+      <section id="useofforce">
+        <h2>5. Применение силы (Use of Force Continuum)</h2>
+        <div class="callout"><strong>Принцип:</strong> минимально необходимая сила, деэскалация и безопасность всех участников.</div>
+        <ol>
+          <li><strong>Присутствие / Команды:</strong> идентификация как полиция, словесные указания.</li>
+          <li><strong>Вербальная деэскалация:</strong> переговоры, предупреждения, время на выполнение.</li>
+          <li><strong>Контроль без боли:</strong> удержания, шарнирные захваты, наручники.</li>
+          <li><strong>Жёсткий контроль:</strong> болевые точки, тактические приёмы (избегать травм).</li>
+          <li><strong>Менее летальные средства:</strong> <em>Taser</em>, баллончик OC, телескопическая дубинка — по регламенту.</li>
+          <li><strong>Смертельная сила:</strong> только при явной угрозе жизни/тяжкого вреда.</li>
+        </ol>
+        <p><strong>После применения силы:</strong> обеспечить медпомощь, зафиксировать на боди-камеру, оформить <em>UF-04</em>, уведомить сержанта.</p>
+      </section>
 
-        <!-- 13. Присяга -->
-        <section class="card" data-title="13. Присяга и ценности" id="oath">
-          <div class="hd"><h2>13. Присяга и ценности</h2><span class="pill">Форум: Основные положения</span></div>
-          <div class="bd">
-            <blockquote class="alert">«Я, офицер полиции Пайнвиля, клянусь защищать Конституцию США и законы штата Оклахома, охранять жизнь и права граждан, действовать честно, беспристрастно и смело.»</blockquote>
-            <p><b>Ценности:</b> долг, честь, закон, уважение к гражданам.</p>
-            <p class="muted">Логика → Практика повседневной службы. См. «14. RP‑инструкции».</p>
-          </div>
-        </section>
+      <section id="stops">
+        <h2>6. Транспортные остановки (Traffic Stop)</h2>
+        <details open>
+          <summary>6.1 Алгоритм</summary>
+          <ol>
+            <li>Сообщить диспетчеру: позывной, 10-20, номер авто, причина.</li>
+            <li>Подход с безопасного угла, контроль рук, приветствие и причина остановки.</li>
+            <li>Запрос документов; проверить 10-27 / 10-29.</li>
+            <li>Предупреждение/штраф/арест — по ситуации и Кодексу нарушений.</li>
+            <li>Возврат документов, разъяснение и завершение остановки.</li>
+          </ol>
+        </details>
+        <details>
+          <summary>6.2 Досмотр авто</summary>
+          <ul>
+            <li>Нужны основания: согласие, запах/видимые признаки, ордер, преследование, безопасность офицера.</li>
+            <li>Документируй основания в отчёте (IR-02 / AR-01).</li>
+          </ul>
+        </details>
+      </section>
 
-        <!-- 14. RP‑инструкции -->
-        <section class="card" data-title="14. RP‑инструкции и сценарии" id="rpg">
-          <div class="hd"><h2>14. RP‑инструкции и сценарии</h2><span class="pill">Форум: RP‑документы</span></div>
-          <div class="bd">
-            <h3 style="margin-top:0">Распорядок смены</h3>
-            <ul class="list">
-              <li>08:00 — построение, брифинг</li>
-              <li>09:00–13:00 — патруль по зонам</li>
-              <li>13:00 — обед, отчёты</li>
-              <li>14:00–18:00 — операции/патруль</li>
-              <li>18:00 — сдача смены, документы</li>
-            </ul>
-            <h3>Сценарии</h3>
-            <ul class="list">
-              <li><b>Погоня (10‑70)</b> — радиоканал общий, ведущий юнит комментирует направление, перекрытия на 79 Highway</li>
-              <li><b>Перестрелка (Code Red)</b> — укрытия, эвакуация граждан, SWAT опционально</li>
-              <li><b>Допрос</b> — уведомление прав, запись аудио, присутствие адвоката</li>
-              <li><b>Штурм</b> — командование SWAT, оцепление квартала, медицина на готове</li>
-            </ul>
-            <p class="muted">Логика → Для протоколов нужны коды статей. См. «15. Таблица статей».</p>
-          </div>
-        </section>
+      <section id="arrest">
+        <h2>7. Задержание, обыск, арест</h2>
+        <ul>
+          <li><strong>Задержание (detain):</strong> кратковременное ограничение свободы для выяснения обстоятельств.</li>
+          <li><strong>Арест:</strong> наличие оснований/вероятной причины (probable cause) — укажи факты.</li>
+        </ul>
+        <details>
+          <summary>7.1 Процедура ареста</summary>
+          <ol>
+            <li>Сообщи основания, <em>прочитай права</em> (RP-версия).</li>
+            <li>Надень наручники, проверь двойную фиксацию, обыск на оружие/контрабанду.</li>
+            <li>Транспортировка: сообщи маршрут, используйте ремень безопасности.</li>
+            <li>Букинг в участке: фото, отпечатки (RP), изъятие вещей в Evidence.</li>
+            <li>Оформление AR-01 +, при необходимости, UF-04.</li>
+          </ol>
+        </details>
+        <details>
+          <summary>7.2 Предупреждение о правах (RP)</summary>
+          <pre>"Вы имеете право хранить молчание. Всё, что вы скажете, может быть использовано против вас в суде. 
+Вы имеете право на адвоката. Если не можете оплатить, адвокат будет предоставлен. 
+Вам понятны права?"</pre>
+        </details>
+      </section>
 
-        <!-- 15. Таблица статей -->
-        <section class="card" data-title="15. Таблица статей (пример)" id="codes">
-          <div class="hd"><h2>15. Таблица статей (пример)</h2><span class="pill">Форум: Архив</span></div>
-          <div class="bd">
-            <table class="table">
-              <thead><tr><th>Код</th><th>Статья</th><th>Кратко</th></tr></thead>
-              <tbody>
-                <tr><td>187 PC</td><td>Убийство</td><td>Намеренное лишение жизни</td></tr>
-                <tr><td>211 PC</td><td>Ограбление</td><td>Хищение с насилием</td></tr>
-                <tr><td>240/245 PC</td><td>Нападение (в т.ч. с оружием)</td><td>Угроза/применение силы</td></tr>
-                <tr><td>451 PC</td><td>Поджог</td><td>Умышленный пожар</td></tr>
-                <tr><td>459 PC</td><td>Кража со взломом</td><td>Проникновение с целью хищения</td></tr>
-                <tr><td>594 PC</td><td>Вандализм</td><td>Повреждение имущества</td></tr>
-                <tr><td>647 PC</td><td>Хулиганство</td><td>Нарушение порядка</td></tr>
-                <tr><td>11350/11352 HS</td><td>Наркотики (хранение/сбыт)</td><td>Контрольные вещества</td></tr>
-                <tr><td>12020 PC</td><td>Незаконное оружие</td><td>Хранение/сбыт</td></tr>
-              </tbody>
-            </table>
-            <div class="alert">Примечание: коды примерные и адаптированы под RP; на сервере допустим локальный свод.</div>
-          </div>
-        </section>
+      <section id="warrants">
+        <h2>8. Ордеры и вход в помещения</h2>
+        <ul>
+          <li>Ордер на обыск/арест — через Детективов/DA (RP), укажи адрес, цель, предметы.</li>
+          <li>Без ордера: согласие, горячее преследование, предотвращение серьёзного вреда, явные признаки преступления.</li>
+          <li>Фиксируй основания, время, участников, изъятое.</li>
+        </ul>
+      </section>
 
-        <!-- 16. Готовые BBCode для форума -->
-        <section class="card" data-title="16. Форумные темы (BBCode)" id="bb">
-          <div class="hd"><h2>16. Форумные темы (BBCode)</h2><span class="pill">Для копирования на форум</span></div>
-          <div class="bd">
-            <details>
-              <summary><b>Устав и основная информация</b></summary>
-              <button class="btn copy" data-copy="bb1">Скопировать</button>
-              <pre id="bb1" class="code bbcode">[center][size=18][b]Полицейский Департамент Пайнвиля (PPD)[/b][/size][/center]
-[center]2004 год, штат Оклахома[/center]
+      <section id="evidence">
+        <h2>9. Доказательства и CSI</h2>
+        <ol>
+          <li>Маркируй каждую единицу: номер дела, дата/время, офицер, описание.</li>
+          <li>Фото/видео сцены, перчатки, пакеты, пломбы.</li>
+          <li>Журнал цепочки хранения (Chain of Custody).</li>
+          <li>Хранение в Evidence Locker; доступ — по допуску.</li>
+        </ol>
+      </section>
 
-[b]История:[/b] Основан в 1933. Контроль трасс Alpha Road и 79 Highway. 2004 — борьба с ОПГ DeSpiff.
-[b]Миссия:[/b] Охрана порядка, противодействие наркотикам и нелегальному оружию.
-[b]Территория:[/b] Main Street, Residential, 79 Highway, Liberty 1–3, Quiet, Main Avenue, Middle.
-[b]Девиз:[/b] [i]To Serve and Protect[/i].
+      <section id="reports">
+        <h2>10. Отчётность и формы</h2>
+        <p>Срок сдачи стандартных отчётов — до конца смены, серьёзные инциденты — в течение 30 минут после завершения сцены.</p>
+        <details open>
+          <summary>10.1 Типы отчётов</summary>
+          <table>
+            <thead><tr><th>Код</th><th>Название</th><th>Когда используется</th></tr></thead>
+            <tbody>
+              <tr><td>AR-01</td><td>Arrest Report</td><td>Любой арест</td></tr>
+              <tr><td>IR-02</td><td>Incident Report</td><td>Инциденты без ареста</td></tr>
+              <tr><td>TR-03</td><td>Traffic Stop</td><td>Значимые остановки ТС</td></tr>
+              <tr><td>UF-04</td><td>Use of Force</td><td>Любое применение силы</td></tr>
+              <tr><td>IA-05</td><td>Complaint / IA</td><td>Жалобы на сотрудников</td></tr>
+            </tbody>
+          </table>
+        </details>
+        <details>
+          <summary>10.2 Шаблон AR-01</summary>
+<pre>
+AR-01 — Arrest Report
+Офицер: [Имя, позывной]
+Дата/Время: [ДД.ММ.ГГГГ ЧЧ:ММ]
+Место: [адрес/10-20]
+Подозреваемый: [ФИО, дата рождения]
+Основание ареста: [факты + статьи RP-Кодекса]
+Применение силы: [да/нет, уровень]
+Доказательства: [перечень]
+Свидетели: [имена/контакты]
+Итог: [обвинения, передан в СИЗО/отпущен]
+Подпись офицера: [ ]
+</pre>
+        </details>
+        <details>
+          <summary>10.3 Шаблон UF-04</summary>
+<pre>
+UF-04 — Use of Force Report
+Офицер(а): [ ]
+Дата/Время: [ ]
+Место: [ ]
+Уровень силы: [ ]
+Причина применения: [угроза/неповиновение/самозащита/другое]
+Описание: [хронология]
+Мед. помощь: [оказана/не требовалась]
+Видео: [bwc/другое]
+Согласование: [Сержант/Лейтенант]
+</pre>
+        </details>
+      </section>
 
-[b]Иерархия:[/b] Chief → Deputy → Captain → Lieutenant → Sergeant → Detective → Officer → Cadet.
-[b]Подразделения:[/b] Patrol, Traffic/Highway, Narcotics, Gang, Detective, SWAT.</pre>
-            </details>
-            <details>
-              <summary><b>Ten‑Codes / Радиокоды</b></summary>
-              <button class="btn copy" data-copy="bb2">Скопировать</button>
-              <pre id="bb2" class="code bbcode">[center][size=16][b]Ten‑Codes PPD[/b][/size][/center]
-[b]Базовые:[/b] 10‑1 (связь), 10‑4 (принято), 10‑7 (вне службы), 10‑8 (в патруле), 10‑20 (место), 10‑23 (прибыл).
-[b]Инциденты:[/b] 10‑10 (драка), 10‑15 (задержанный), 10‑25 (нападение), 10‑31 (ограбление), 10‑32 (подкрепление), 10‑50 (ДТП), 10‑70 (погоня), 10‑80 (сопротивление), 10‑99 (офицер в опасности).
-[spoiler="Примеры"]
-— «10‑20, Liberty Street/2. Нужен 10‑32.»
-— «10‑70, синий седан, 79 Highway, юг.»
-[/spoiler]</pre>
-            </details>
-            <details>
-              <summary><b>Бюрократия и шаблоны (тикеты/рапорты)</b></summary>
-              <button class="btn copy" data-copy="bb3">Скопировать</button>
-              <pre id="bb3" class="code bbcode">[center][size=16][b]Документы PPD[/b][/size][/center]
-[spoiler="Тикет задержания"][code]
-[Задержание №0001]
-Дата/время: __.__.2004, __:__
-Место: ______  Юнит(ы): ______  Подозреваемый(е): ______
-Статья: ______
-Описание/основание: ____________________
-Miranda: да/нет  Изъято: ______
-Подписи: офицер ___ / задержанный ___
-[/code][/spoiler]
-[spoiler="Протокол допроса"][code]
-Дата: __.__.2004  Время: __:__–__:__  Офицер: ____  Подозреваемый: ____  Адвокат: да/нет
-Вопрос/Ответ: __________________________
-Итог/Решение: __________________________
-Подписи: офицер ___ / подозреваемый ___ / адвокат ___
-[/code][/spoiler]
-[spoiler="Отчёт об аресте"][code]
-Дата: __.__.2004  Офицер: ____  Позывной: __-__  Арестованный: ____  Статьи: ____
-Обстоятельства, улики, свидетели, приложения.
-Рекомендация: прокуратура / залог / прочее
-Подпись: ____
-[/code][/spoiler]</pre>
-            </details>
-          </div>
-        </section>
+      <section id="patrol">
+        <h2>11. Патруль и смены</h2>
+        <ul>
+          <li>Брифинг: задачи, активные BOLO, распределение районов.</li>
+          <li>Статусы: 10-7, 10-8, 10-23, 10-97 — своевременно обновлять.</li>
+          <li>Патруль в паре приветствуется; одиночный — сообщать 10-20 чаще.</li>
+          <li>Приоритет: угрозы жизни → преступления по горячим следам → запросы граждан.</li>
+        </ul>
+      </section>
 
-        <div class="foot">PPD · Gray Days S1 · Пайнвиль · 2004</div>
-      </div>
+      <section id="gear">
+        <h2>12. Вооружение и экипировка</h2>
+        <details open>
+          <summary>12.1 Базовый набор</summary>
+          <ul>
+            <li>Body Cam (вкл. по возможности RP), рация, аптечка, фонарик.</li>
+            <li>Огнестрельное (служебное), Taser, OC, дубинка — по уровню допуска.</li>
+            <li>Бронежилет при рисковых вызовах; шлем — для SWAT.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>12.2 Применение Taser</summary>
+          <ul>
+            <li>Только при активном сопротивлении/угрозе. Предупреждение по возможности.</li>
+            <li>Одна цикл-доза, оценка состояния, вызов 10-52 при необходимости.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="vehicles">
+        <h2>13. Транспорт и погони</h2>
+        <ul>
+          <li>Типы: патрульный седан, перехватчик, SUV, неразмеченный, мото.</li>
+          <li>Осмотр ТС перед сменой; повреждения — в отчёт TR-03/IR-02.</li>
+          <li><strong>Погони:</strong> учитывать трафик, погоду, опасность; прерывать, если риск высок.</li>
+          <li>Шипы/перекрытия — по разрешению супервизора.</li>
+        </ul>
+      </section>
+
+      <section id="special">
+        <h2>14. Спецподразделения</h2>
+        <details open>
+          <summary>14.1 SWAT активация</summary>
+          <ol>
+            <li>Основание: вооружённые баррикады, заложники, высокориск. ордер.</li>
+            <li>Запрос через командира смены → подтверждение капитаном/выше.</li>
+            <li>Периметр, эвакуация граждан, переговорщик, план входа.</li>
+          </ol>
+        </details>
+        <details>
+          <summary>14.2 K-9</summary>
+          <ul>
+            <li>След, розыск, поиск наркотиков/оружия — по запросу патруля/детективов.</li>
+            <li>Предупреждение перед пуском собаки. Ответственность за укус — отчёт UF-04.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="liaison">
+        <h2>15. Взаимодействие с EMS/FD/DA/Dispatch</h2>
+        <ul>
+          <li><strong>EMS/FD:</strong> приоритет безопасности; сцена передаётся медикам при стабилизации.</li>
+          <li><strong>DA (прокуроры):</strong> консультации по ордерам/обвинениям (RP).</li>
+          <li><strong>Dispatch:</strong> все статусы/запросы через диспетчера по стандарту.</li>
+        </ul>
+      </section>
+
+      <section id="discipline">
+        <h2>16. Дисциплина, камеры и жалобы</h2>
+        <ul>
+          <li>Запрещено: токс, злоупотребление властью, NLR нарушения, мета/павергейм.</li>
+          <li>Body/Car Cam: включать на контактах; хранить записи по делу.</li>
+          <li>Жалобы: форма IA-05, рассмотрение IA; наказания: предупреждение → выговор → отстранение.</li>
+        </ul>
+      </section>
+
+      <section id="ooc">
+        <h2>17. OOC безопасность RP</h2>
+        <ul>
+          <li>Сложные сцены — согласование OOC при необходимости (в /me, /do).</li>
+          <li>Проблемы решаем через админов, не в IC-эфире.</li>
+          <li>Уважайте время игроков: не затягивайте оформлением без причины.</li>
+        </ul>
+      </section>
+
+      <section id="penalties">
+        <h2>18. Приложение: примерный штрафной каталог (RP)</h2>
+        <table>
+          <thead><tr><th>Статья</th><th>Описание</th><th>Штраф</th><th>Заключение</th></tr></thead>
+          <tbody>
+            <tr><td>V-01</td><td>Превышение скорости (минор)</td><td>$200–$500</td><td>—</td></tr>
+            <tr><td>V-02</td><td>Опасное вождение</td><td>$500–$1500</td><td>до 30 мин</td></tr>
+            <tr><td>M-01</td><td>Неповиновение законным требованиям</td><td>$300–$800</td><td>до 20 мин</td></tr>
+            <tr><td>F-01</td><td>Нападение на офицера</td><td>$2000–$5000</td><td>30–60 мин</td></tr>
+            <tr><td>F-02</td><td>Вооружённый грабёж</td><td>$5000–$10000</td><td>60–120 мин</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">* Значения примерные — адаптируйте под экономику/правила сервера.</p>
+      </section>
+
+      <section id="faq">
+        <h2>19. FAQ и примеры переговоров</h2>
+        <details>
+          <summary>Как правильно объявлять BOLO?</summary>
+          <pre>BOLO: Черный седан, номер ABC123, 2 пассажира, послед. на север по Route 17, возможен 10-32.</pre>
+        </details>
+        <details>
+          <summary>Что писать в коротком IR-02?</summary>
+<pre>
+IR-02 — Incident Report (кратко)
+Кто/Где/Когда: [ ]
+Что произошло: [ ]
+Действия полиции: [ ]
+Итог: [ ]
+Нужны дальнейшие действия: [да/нет]
+</pre>
+        </details>
+      </section>
+
+      <section id="closing">
+        <h2>20. Заключение</h2>
+        <p>Этот устав — живой документ. Если у вас есть предложения, обращайтесь к своему сержанту или отправьте правки в IA/Командование. Безопасной службы и приятного RP!</p>
+      </section>
+
+      <div class="footer">© Pineville Police Department (RP), создано для ролевого проекта. Не является реальным официальным документом.</div>
     </main>
   </div>
 
   <script>
-    // Build nav from sections
-    const content = document.querySelectorAll('#content > section');
-    const nav = document.getElementById('nav');
-    const groups = [
-      {title:'Основное', ids:['about','area','ten']},
-      {title:'Оперативная работа', ids:['patrols','uof','arrest']},
-      {title:'Бюрократия', ids:['forms','charter','rank']},
-      {title:'Структура', ids:['units','coop','threat','oath']},
-      {title:'Практика', ids:['rpg','codes','bb']},
-    ];
-    groups.forEach(g=>{
-      const t = document.createElement('div');
-      t.className='title';
-      t.textContent=g.title;
-      nav.appendChild(t);
-      g.ids.forEach(id=>{
-        const s = document.getElementById(id);
-        if(!s) return;
-        const a = document.createElement('a');
-        a.href = '#'+id;
-        a.textContent = s.dataset.title || s.querySelector('h2')?.textContent;
-        nav.appendChild(a);
+    // Тема (сохранение в localStorage)
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light') root.classList.add('light');
+    document.getElementById('toggleTheme').addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Авто-генерация оглавления
+    const toc = document.getElementById('toc');
+    const sections = [...document.querySelectorAll('main > section')];
+    sections.forEach(sec => {
+      const h2 = sec.querySelector('h2');
+      if(!h2) return;
+      const a = document.createElement('a');
+      a.href = `#${sec.id}`;
+      a.textContent = h2.textContent;
+      const li = document.createElement('li');
+      li.appendChild(a); toc.appendChild(li);
+    });
+
+    // Поиск по разделам (скрывает не подходящие)
+    const search = document.getElementById('search');
+    search.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      sections.forEach(sec => {
+        const txt = sec.innerText.toLowerCase();
+        sec.classList.toggle('hidden', q && !txt.includes(q));
       });
     });
 
-    // Search filter
-    const q = document.getElementById('q');
-    q.addEventListener('input',()=>{
-      const term = q.value.trim().toLowerCase();
-      content.forEach(sec=>{
-        if(!term){sec.style.display='';return}
-        const txt = sec.innerText.toLowerCase();
-        sec.style.display = txt.includes(term)?'':'none';
-      })
-    });
-
-    // Copy & download helpers
-    function copyText(id){
-      const el = document.getElementById(id);
-      const s = window.getSelection();
-      const r = document.createRange();
-      r.selectNodeContents(el);
-      s.removeAllRanges();
-      s.addRange(r);
-      try{document.execCommand('copy')}catch(e){}
-      s.removeAllRanges();
+    // Развернуть/свернуть все details
+    const expandAllBtn = document.getElementById('expandAll');
+    const collapseAllBtn = document.getElementById('collapseAll');
+    function setAll(open){
+      document.querySelectorAll('details').forEach(d => d.open = open);
     }
-    function download(id,name){
-      const text = document.getElementById(id).innerText;
-      const blob = new Blob([text],{type:'text/plain;charset=utf-8'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href=url;a.download=name;document.body.appendChild(a);a.click();
-      setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},100);
-    }
-    document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyText(b.dataset.copy)));
-    document.querySelectorAll('[data-dl]').forEach(b=>b.addEventListener('click',()=>download(b.dataset.dl,b.dataset.name)));
-
-    // Expand/collapse all details
-    const exp = document.getElementById('expand');
-    let allOpen = false;
-    exp.addEventListener('click',()=>{
-      allOpen = !allOpen;
-      document.querySelectorAll('details').forEach(d=>d.open = allOpen);
-      exp.textContent = allOpen? 'Свернуть все спойлеры' : 'Раскрыть все спойлеры';
-    })
+    expandAllBtn.addEventListener('click', () => setAll(true));
+    collapseAllBtn.addEventListener('click', () => setAll(false));
   </script>
 </body>
 </html>
-
